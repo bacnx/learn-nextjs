@@ -1,10 +1,16 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next'
+import { useRouter } from 'next/router'
 
 interface PostProps {
   post: any
 }
 
 export default function Post({ post }: PostProps) {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
   if (!post) return null
 
   return (
@@ -27,7 +33,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: data.data.map((post: any) => ({ params: { postId: post.id } })),
-    fallback: false,
+    fallback: true,
   }
 }
 
@@ -45,5 +51,6 @@ export const getStaticProps: GetStaticProps<PostProps> = async (
 
   return {
     props: { post: { id: data.id, title: data.title } },
+    revalidate: 5,
   }
 }
