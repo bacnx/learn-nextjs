@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import MyComponent from '@/components/MyComponent'
+import MyComponent from '@/components/common/MyComponent'
+import { MainLayout } from '@/components/layout'
 
 export default function About() {
   const router = useRouter()
@@ -15,3 +16,5 @@ export default function About() {
     </>
   )
 }
+
+About.Layout = MainLayout
