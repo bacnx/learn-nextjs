@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import MyComponent from '@/components/MyComponent'
 
 export default function About() {
   const router = useRouter()
@@ -10,6 +11,7 @@ export default function About() {
     <>
       <h1>About Page</h1>
       <Link href="/">Click here to go to Home</Link>
+      <MyComponent />
     </>
   )
 }
