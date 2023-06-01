@@ -19,9 +19,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
     const handleLoginResponse: ProxyResCallback = (proxyRes, req, res) => {
       let body = ''
+
       proxyRes.on('data', (chunk) => {
         body += chunk
       })
+
       proxyRes.on('end', () => {
         try {
           const { accessToken, expiredAt } = JSON.parse(body)
