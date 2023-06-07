@@ -1,14 +1,18 @@
 import { AppPropsWithLayout } from '@/models'
 import '../styles/globals.css'
 import { EmptyLayout } from '@/components/layout'
+import { SWRConfig } from 'swr'
+import { axiosClient } from '@/api-client/axios-client'
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SWRConfig value={{ fetcher: (url) => axiosClient.get(url), shouldRetryOnError: false }}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </SWRConfig>
   )
 }
 
