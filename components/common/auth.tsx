@@ -1,23 +1,21 @@
 import { useAuth } from '@/hooks'
+import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
-import { redirect } from 'next/navigation'
 
-interface AuthProps {
+export interface AuthProps {
   children: ReactNode
 }
 
 function Auth({ children }: AuthProps) {
+  const router = useRouter()
   const { profile, isLoadProfile } = useAuth()
 
   if (isLoadProfile) {
     return <p>Loading...</p>
   }
 
-  console.log(profile)
-
   if (!profile) {
-    // redirect('/login')
-    return <p>Redirect to login page</p>
+    router.push('/login')
   }
 
   return <>{children}</>
