@@ -14,6 +14,7 @@ export const useAuth = (options?: Partial<PublicConfiguration>) => {
     data: profile,
     error,
     mutate,
+    isLoading: isLoadProfile,
   } = useSWR('/profile', {
     dedupingInterval: MILISECONDS_PER_HOUR,
     revalidateOnFocus: false,
@@ -28,8 +29,12 @@ export const useAuth = (options?: Partial<PublicConfiguration>) => {
 
   const logout = async () => {
     await authApi.logout()
-    mutate({}, false)
+    mutate(undefined, false)
   }
 
-  return { profile, error, login, logout }
+  const getProfile = async () => {
+    await mutate()
+  }
+
+  return { profile, error, isLoadProfile, login, logout, getProfile }
 }

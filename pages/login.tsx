@@ -1,7 +1,9 @@
 import { useAuth } from '@/hooks'
 
 export default function LoginPage() {
-  const { profile, login, logout } = useAuth()
+  const { profile, login, logout } = useAuth({
+    revalidateOnMount: false,
+  })
 
   async function handleLoginClick() {
     try {
