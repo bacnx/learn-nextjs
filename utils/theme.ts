@@ -9,24 +9,35 @@ export const roboto = Roboto({
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
 })
 
+export const palette = {
+  primary: {
+    main: '#FF6464',
+  },
+  secondary: {
+    main: '#00A8CC',
+  },
+  dark: {
+    main: '#21243D',
+  },
+  light: {
+    main: '#8695A4',
+  },
+  error: {
+    main: red.A400,
+  },
+}
+
 // Create a theme instance.
 export const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#556cd6',
-    },
-    secondary: {
-      main: '#19857b',
-    },
-    error: {
-      main: red.A400,
-    },
-  },
+  palette: palette,
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
   components: {
     MuiContainer: {
+      defaultProps: {
+        maxWidth: 'md',
+      },
       styleOverrides: {
         maxWidthMd: {
           maxWidth: 860,
@@ -39,6 +50,20 @@ export const theme = createTheme({
 
           '@media (min-width: 600px)': {
             maxWidth: 680,
+          },
+        },
+      },
+    },
+    MuiLink: {
+      defaultProps: {
+        underline: 'none',
+        color: palette.dark.main,
+      },
+      styleOverrides: {
+        root: {
+          userSelect: 'none',
+          '&:hover': {
+            color: palette.primary.main,
           },
         },
       },

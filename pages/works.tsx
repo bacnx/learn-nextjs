@@ -1,14 +1,14 @@
 import { MainLayout } from '@/components/layout'
 import { Box } from '@mui/material'
 
-function ContactPage() {
+function WorksPage() {
   return (
     <Box>
-      <h2>Contact Page</h2>
+      <h2>Works Page</h2>
     </Box>
   )
 }
 
-ContactPage.Layout = MainLayout
+WorksPage.Layout = MainLayout
 
-export default ContactPage
+export default WorksPage
