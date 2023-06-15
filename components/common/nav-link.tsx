@@ -18,7 +18,7 @@ function NavLink({ href, children, activeStyle, ...props }: NavLinkProps) {
       component={Link}
       href={href}
       style={isActive ? activeStyle : {}}
-      sx={{ fontWeight: 500 }}
+      sx={{ fontWeight: 'medium' }}
       {...props}
     >
       {children}

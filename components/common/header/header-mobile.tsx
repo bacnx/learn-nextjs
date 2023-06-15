@@ -13,7 +13,7 @@ function HeaderMobile() {
   }
 
   return (
-    <Box display={{ xs: 'block', sm: 'none' }} py={4}>
+    <Box display={{ xs: 'block', sm: 'none' }} py={2}>
       <Container sx={{ textAlign: 'right' }}>
         <Button onClick={toggleDrawer}>
           <MenuOutlined />

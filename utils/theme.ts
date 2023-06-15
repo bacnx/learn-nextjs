@@ -1,9 +1,9 @@
-import { Roboto } from 'next/font/google'
+import { Heebo } from 'next/font/google'
 import { createTheme } from '@mui/material/styles'
 import { red } from '@mui/material/colors'
 
-export const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
+export const heebo = Heebo({
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
@@ -32,7 +32,7 @@ export const palette = {
 export const theme = createTheme({
   palette: palette,
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: heebo.style.fontFamily,
   },
   components: {
     MuiContainer: {
