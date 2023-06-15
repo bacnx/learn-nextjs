@@ -12,6 +12,7 @@ export const roboto = Roboto({
 export const palette = {
   primary: {
     main: '#FF6464',
+    blur: '#FF646410',
   },
   secondary: {
     main: '#00A8CC',
@@ -65,6 +66,13 @@ export const theme = createTheme({
           '&:hover': {
             color: palette.primary.main,
           },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: palette.dark.main,
         },
       },
     },

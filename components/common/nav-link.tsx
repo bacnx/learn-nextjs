@@ -14,7 +14,13 @@ function NavLink({ href, children, activeStyle, ...props }: NavLinkProps) {
   const isActive = router.pathname === href
 
   return (
-    <MuiLink component={Link} href={href} style={isActive ? activeStyle : {}} {...props}>
+    <MuiLink
+      component={Link}
+      href={href}
+      style={isActive ? activeStyle : {}}
+      sx={{ fontWeight: 500 }}
+      {...props}
+    >
       {children}
     </MuiLink>
   )
