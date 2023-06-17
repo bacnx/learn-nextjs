@@ -1,5 +1,5 @@
 import { Heebo } from 'next/font/google'
-import { createTheme } from '@mui/material/styles'
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { red } from '@mui/material/colors'
 
 export const heebo = Heebo({
@@ -16,6 +16,10 @@ export const palette = {
   },
   secondary: {
     main: '#00A8CC',
+    blur: '#00A8CC20',
+  },
+  text: {
+    primary: '#21243D',
   },
   dark: {
     main: '#21243D',
@@ -29,10 +33,13 @@ export const palette = {
 }
 
 // Create a theme instance.
-export const theme = createTheme({
+export let theme = createTheme({
   palette: palette,
   typography: {
     fontFamily: heebo.style.fontFamily,
+    button: {
+      textTransform: 'none',
+    },
   },
   components: {
     MuiContainer: {
@@ -70,11 +77,16 @@ export const theme = createTheme({
       },
     },
     MuiButton: {
-      styleOverrides: {
-        root: {
-          color: palette.dark.main,
+      variants: [
+        {
+          props: { variant: 'contained', color: 'primary' },
+          style: {
+            color: 'white',
+          },
         },
-      },
+      ],
     },
   },
 })
+
+theme = responsiveFontSizes(theme)
