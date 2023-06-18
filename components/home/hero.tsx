@@ -17,7 +17,7 @@ export function HeroSection() {
             maxWidth={506}
             textAlign={{ xs: 'center', md: 'left' }}
           >
-            <Typography variant="h3" fontWeight="bold">
+            <Typography variant="h3" fontWeight="bold" fontSize={{ lg: 44 }}>
               Hi, I am John, <br />
               Creative Technologist
             </Typography>
@@ -40,7 +40,7 @@ export function HeroSection() {
             sx={{
               objectFit: 'cover',
               borderRadius: '50%',
-              boxShadow: `-4px 8px ${palette.secondary.blur}`,
+              boxShadow: `-4px 8px ${palette.secondary.light}`,
             }}
           />
         </Stack>

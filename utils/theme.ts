@@ -16,7 +16,7 @@ export const palette = {
   },
   secondary: {
     main: '#00A8CC',
-    blur: '#00A8CC20',
+    light: '#EDF7FA',
   },
   text: {
     primary: '#21243D',

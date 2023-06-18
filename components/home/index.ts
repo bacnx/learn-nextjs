@@ -1,1 +1,2 @@
-export * from './hero-section'
+export * from './hero'
+export * from './recent-posts'
