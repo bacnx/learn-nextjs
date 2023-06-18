@@ -1,23 +1,4 @@
-import { Box, Button, Container, Divider, Grid, Stack, Typography } from '@mui/material'
-
-function Post() {
-  return (
-    <Box borderRadius={4} bgcolor="white" p={{ xs: 2.5, md: 3 }} boxShadow="0 4px 16px #0001">
-      <Typography variant="h5" fontWeight="bold">
-        Making a design system from scratch
-      </Typography>
-      <Stack direction="row" spacing={2} mt={{ xs: 1.5, md: 2 }}>
-        <Typography>12 Feb 2020</Typography>
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <Typography>Design, Pattern</Typography>
-      </Stack>
-      <Typography mt={{ xs: 2.5, md: 1.5 }}>
-        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
-        consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-      </Typography>
-    </Box>
-  )
-}
+import { Box, Button, Container, Divider, Stack, Typography } from '@mui/material'
 
 export function RecentPostsSection() {
   return (
@@ -52,6 +33,25 @@ export function RecentPostsSection() {
           </Box>
         </Stack>
       </Container>
+    </Box>
+  )
+}
+
+function Post() {
+  return (
+    <Box borderRadius={4} bgcolor="white" p={{ xs: 2.5, md: 3 }} boxShadow="0 4px 16px #0001">
+      <Typography variant="h5" fontWeight="bold">
+        Making a design system from scratch
+      </Typography>
+      <Stack direction="row" spacing={2} mt={{ xs: 1.5, md: 2 }}>
+        <Typography>12 Feb 2020</Typography>
+        <Divider orientation="vertical" variant="middle" flexItem />
+        <Typography>Design, Pattern</Typography>
+      </Stack>
+      <Typography mt={{ xs: 2.5, md: 1.5 }}>
+        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+        consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+      </Typography>
     </Box>
   )
 }
