@@ -29,7 +29,7 @@ export function WorkItem({ post }: WorkItemProps) {
             mr={2}
             sx={{ display: 'inline-block', bgcolor: 'dark.main', color: 'white', borderRadius: 99 }}
           >
-            {post.createdAt}
+            {new Date(post.createdAt).getFullYear()}
           </Typography>
           <Typography variant="caption" fontSize={{ xs: 14, md: 12 }} color="light.main">
             {post.tags[0]}
