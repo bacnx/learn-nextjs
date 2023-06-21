@@ -6,6 +6,7 @@ import { createEmotionCache, theme } from '@/utils'
 import { CacheProvider } from '@emotion/react'
 import Head from 'next/head'
 import { CssBaseline, ThemeProvider } from '@mui/material'
+import Seo from '@/components/common/seo'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -21,6 +22,12 @@ function MyApp({
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+      <Seo
+        title="NextJS Tutorial"
+        description="Prative NextJS + Typescript + MUI with Ease Frontend"
+        url="https://learn-nextjs-amber-six.vercel.app/"
+        thumbnailUrl="https://miro.medium.com/max/3840/1*8mjuQTYRCSniAAK9jJeOSA.png"
+      />
 
       <ThemeProvider theme={theme}>
         <CssBaseline />
