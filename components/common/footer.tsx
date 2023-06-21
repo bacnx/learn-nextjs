@@ -23,14 +23,14 @@ const CONTACT_INFOS = [
 function Footer() {
   return (
     <Box component="footer" py={2} textAlign="center">
-      <Stack direction="row" display="inline-block" spacing={3}>
+      <Stack direction="row" display="inline-block" spacing={4}>
         {CONTACT_INFOS.map(({ href, Icon }, index) => (
-          <Link key={index} component="a" href={href}>
-            <Icon sx={{ fontSize: 40 }} />
+          <Link key={index} component="a" href={href} target="_blank" rel="noopener noreferrer">
+            <Icon sx={{ fontSize: 48 }} />
           </Link>
         ))}
       </Stack>
-      <Typography color="dark.main" fontSize={14} mt={2} mb={4}>
+      <Typography fontSize={14} mt={2} mb={4}>
         Copyright ©{new Date().getFullYear()} All rights reserved
       </Typography>
     </Box>

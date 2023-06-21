@@ -20,7 +20,7 @@ export function WorkItem({ post }: WorkItemProps) {
         <Typography variant="h4" fontWeight="bold">
           {post.title}
         </Typography>
-        <Typography mt={{ xs: 1.5, md: 2 }}>
+        <Typography mt={{ xs: 0.5, md: 2 }}>
           <Typography
             variant="caption"
             fontSize={{ xs: 14, md: 12 }}
@@ -35,7 +35,7 @@ export function WorkItem({ post }: WorkItemProps) {
             {post.tags[0]}
           </Typography>
         </Typography>
-        <Typography variant="body2" mt={{ xs: 3, md: 4 }}>
+        <Typography variant="body2" mt={{ xs: 2, md: 4 }}>
           {post.description}
         </Typography>
       </Box>
