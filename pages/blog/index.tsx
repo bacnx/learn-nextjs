@@ -1,13 +1,27 @@
 import { MainLayout } from '@/components/layout'
-import { Box } from '@mui/material'
+import { Box, Container, Typography, Stack, Divider } from '@mui/material'
 import { getPostList } from '@/utils'
+import { Work, WorkSmall } from '@/models'
+import { BlogItem } from '@/components/blog'
 
-function BlogPage({ posts }: any) {
-  console.log(posts)
+interface BlogPageProps {
+  posts: WorkSmall[]
+}
 
+function BlogPage({ posts }: BlogPageProps) {
   return (
     <Box>
-      <h2>Blog Page</h2>
+      <Container maxWidth="md">
+        <Typography variant="h4" fontWeight="bold">
+          Blogs
+        </Typography>
+
+        <Stack mt={1} divider={<Divider flexItem />}>
+          {posts.map((post) => (
+            <BlogItem key={post.id} data={post} />
+          ))}
+        </Stack>
+      </Container>
     </Box>
   )
 }
@@ -19,11 +33,17 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: data.map((post: any) => ({
-        id: post.id,
-        title: post.title,
-        description: post.description,
-      })),
+      posts: data.map(
+        ({ id, slug, title, imageUrl, createdAt, tags, description }: Work): WorkSmall => ({
+          id,
+          slug,
+          title,
+          imageUrl: imageUrl || null,
+          createdAt,
+          tags,
+          description,
+        })
+      ),
     },
   }
 }
