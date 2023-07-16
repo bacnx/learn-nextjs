@@ -20,11 +20,11 @@ export async function getPostList(): Promise<Work[]> {
       id: index,
       slug: data.slug,
       title: data.title,
-      imageUrl: data.image,
+      imageUrl: data.image || null,
       createdAt: data.create_at,
       tags: data.tags,
       description: excerpt,
-      content,
+      mdContent: content,
       author: {
         name: data.author,
         title: data.author_title,

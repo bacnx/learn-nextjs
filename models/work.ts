@@ -9,11 +9,12 @@ export interface Work {
   id: number
   slug: string
   title: string
-  imageUrl?: string
+  imageUrl: string | null
   createdAt: number
   tags: string[]
   description?: string
-  content: string
+  mdContent: string
+  htmlContent?: string
   author: Author
 }
 
@@ -21,7 +22,7 @@ export interface WorkSmall {
   id: number
   slug: string
   title: string
-  imageUrl?: string | null
+  imageUrl: string | null
   createdAt: number
   tags: string[]
   description?: string
