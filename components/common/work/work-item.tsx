@@ -10,7 +10,7 @@ export function WorkItem({ post }: WorkItemProps) {
     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
       <Box
         component="img"
-        src={post.imageUrl}
+        src={post.imageUrl || undefined}
         alt={post.title}
         width={{ xs: '100%', md: 246 }}
         height={{ xs: 230, md: 180 }}
