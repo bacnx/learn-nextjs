@@ -7,6 +7,7 @@ import { CacheProvider } from '@emotion/react'
 import Head from 'next/head'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import Seo from '@/components/common/seo'
+import 'highlight.js/styles/base16/solarized-dark.css'
 
 const clientSideEmotionCache = createEmotionCache()
 

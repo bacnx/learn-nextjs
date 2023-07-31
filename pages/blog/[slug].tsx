@@ -1,16 +1,26 @@
 import { GetStaticPropsContext, GetStaticPaths, InferGetStaticPropsType } from 'next'
 import { Container } from '@mui/material'
+import styled from '@emotion/styled'
 import MarkdownIt from 'markdown-it'
+import highlightjs from 'markdown-it-highlightjs'
 import { getPostList } from '@/utils'
 import { MainLayout } from '@/components/layout'
+import Seo from '@/components/common/seo'
 
-const md = new MarkdownIt()
+const StyledMarkdown = styled.div`
+  img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+`
 
 function BlogDetail({ work }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Container maxWidth="md">
+      <Seo title={work.title} />
+
       <h1>{work.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: work.htmlContent || '' }} />
+      <StyledMarkdown dangerouslySetInnerHTML={{ __html: work.htmlContent || '' }} />
     </Container>
   )
 }
@@ -35,6 +45,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   const slugPost = postList.find((post) => post.slug === slug)
 
   if (!slugPost) return { notFound: true }
+
+  const md = new MarkdownIt('commonmark').use(highlightjs)
 
   const postWithHtmlContent = slugPost
   postWithHtmlContent.htmlContent = md.render(slugPost.mdContent)
