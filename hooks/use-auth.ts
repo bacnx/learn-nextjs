@@ -1,13 +1,9 @@
 import useSWR from 'swr'
 import { authApi } from '@/api-client'
 import { PublicConfiguration } from 'swr/_internal'
+import type { LoginPayload } from '@/models'
 
 const MILISECONDS_PER_HOUR = 60 * 60 * 1000
-
-interface AccountInfo {
-  username: string
-  password: string
-}
 
 export const useAuth = (options?: Partial<PublicConfiguration>) => {
   const {
@@ -21,8 +17,8 @@ export const useAuth = (options?: Partial<PublicConfiguration>) => {
     ...options,
   })
 
-  const login = async (accountInfo: AccountInfo) => {
-    await authApi.login(accountInfo)
+  const login = async (payload: LoginPayload) => {
+    await authApi.login(payload)
 
     await mutate()
   }

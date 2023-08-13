@@ -1,37 +1,49 @@
+import { Paper, Stack, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { useAuth } from '@/hooks'
+import { FormLogin } from '@/components/auth'
+import type { LoginPayload } from '@/models'
+import { palette } from '@/utils'
+import Seo from '@/components/common/seo'
+
+const Wrapper = styled(Paper)(() => ({
+  borderRadius: 16,
+  boxShadow: '4px 0 32px #0001',
+}))
 
 export default function LoginPage() {
-  const { profile, login, logout } = useAuth({
+  const { login } = useAuth({
     revalidateOnMount: false,
   })
 
-  async function handleLoginClick() {
+  const handleLoginSubmit = async (payload: LoginPayload) => {
     try {
-      await login({
-        username: 'test12',
-        password: '123456',
-      })
+      await login(payload)
     } catch (error) {
-      console.log('failed to login', error)
+      console.error('faild to login', error)
     }
-
-    console.log('redirect to dashboard')
-  }
-
-  async function handleLogoutClick() {
-    await logout()
-
-    console.log('redirect to login page')
   }
 
   return (
     <>
-      <h1>Login Page</h1>
+      <Seo title="Login" />
+      <Stack
+        height="100vh"
+        justifyContent="center"
+        alignItems="center"
+        bgcolor={palette.primary.blur}
+      >
+        <Wrapper sx={{ maxWidth: 480, p: { xs: 4, md: 8 }, textAlign: 'center' }}>
+          <Typography component="h1" variant="h4" fontWeight="bold">
+            Wellcome back!
+          </Typography>
+          <Typography variant="subtitle1" color={palette.text.blur} sx={{ mb: 4 }}>
+            Enter your username and password to login
+          </Typography>
 
-      <p>{JSON.stringify(profile || {})}</p>
-
-      <button onClick={handleLoginClick}>Login</button>
-      <button onClick={handleLogoutClick}>Logout</button>
+          <FormLogin onSubmit={handleLoginSubmit} />
+        </Wrapper>
+      </Stack>
     </>
   )
 }

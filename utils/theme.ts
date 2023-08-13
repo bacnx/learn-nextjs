@@ -20,6 +20,7 @@ export const palette = {
   },
   text: {
     primary: '#21243D',
+    blur: '#21243DCC',
   },
   dark: {
     main: '#21243D',
