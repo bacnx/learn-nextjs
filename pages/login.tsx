@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation'
 import { Paper, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useAuth } from '@/hooks'
@@ -15,10 +16,12 @@ export default function LoginPage() {
   const { login } = useAuth({
     revalidateOnMount: false,
   })
+  const { push } = useRouter()
 
   const handleLoginSubmit = async (payload: LoginPayload) => {
     try {
       await login(payload)
+      push('/')
     } catch (error) {
       console.error('faild to login', error)
     }

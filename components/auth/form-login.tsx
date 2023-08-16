@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Stack, Button, InputAdornment, IconButton, type SxProps } from '@mui/material'
+import {
+  Stack,
+  Button,
+  InputAdornment,
+  IconButton,
+  type SxProps,
+  CircularProgress,
+} from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { InputField } from '@/components/form'
 import type { LoginPayload } from '@/models'
@@ -25,7 +32,11 @@ export interface FormLoginProps {
 
 export function FormLogin({ sx, onSubmit }: FormLoginProps) {
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const { handleSubmit, control } = useForm<LoginPayload>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting },
+  } = useForm<LoginPayload>({
     defaultValues: {
       username: '',
       password: '',
@@ -52,7 +63,15 @@ export function FormLogin({ sx, onSubmit }: FormLoginProps) {
         }}
       />
 
-      <Button type="submit" size="large" variant="contained" disableElevation fullWidth>
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        size="large"
+        variant="contained"
+        startIcon={isSubmitting ? <CircularProgress color="inherit" size="1em" /> : null}
+        disableElevation
+        fullWidth
+      >
         Submit
       </Button>
     </Stack>
