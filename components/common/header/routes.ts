@@ -1,4 +1,4 @@
-const ROUTE_ITEMS = [
+export const ROUTE_ITEMS = [
   {
     title: 'Home',
     link: '/',
@@ -6,11 +6,10 @@ const ROUTE_ITEMS = [
   {
     title: 'Works',
     link: '/works',
+    requireLogin: true,
   },
   {
     title: 'Blog',
     link: '/blog',
   },
 ]
-
-export default ROUTE_ITEMS

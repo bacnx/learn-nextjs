@@ -1,20 +1,38 @@
+import { useRouter } from 'next/navigation'
 import { Box, Button, Container, SwipeableDrawer } from '@mui/material'
 import { MenuOutlined } from '@mui/icons-material'
 import { useState } from 'react'
-import ROUTE_ITEMS from './routes'
+import { ROUTE_ITEMS } from './routes'
 import NavLink from '../nav-link'
+import { useAuth } from '@/hooks'
 import { palette } from '@/utils'
 
 function HeaderMobile() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
+  const { profile, logout } = useAuth()
+  const router = useRouter()
+
+  const isCurrentUser = !!profile?.username
+  const routeItems = ROUTE_ITEMS.filter((item) => isCurrentUser || !item.requireLogin)
 
   const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer)
   }
 
+  const handleLogout = () => {
+    logout()
+    router.refresh()
+  }
+
   return (
     <Box display={{ xs: 'block', sm: 'none' }} py={2}>
       <Container sx={{ textAlign: 'right' }}>
+        {!isCurrentUser && (
+          <Button variant="outlined" onClick={() => router.push('/login')}>
+            Login
+          </Button>
+        )}
+
         <Button sx={{ color: 'text.primary' }} onClick={toggleDrawer}>
           <MenuOutlined />
         </Button>
@@ -26,7 +44,7 @@ function HeaderMobile() {
           onClose={toggleDrawer}
           onClick={toggleDrawer}
         >
-          {ROUTE_ITEMS.map((route) => (
+          {routeItems.map((route) => (
             <NavLink
               key={route.link}
               href={route.link}
@@ -36,6 +54,7 @@ function HeaderMobile() {
               {route.title}
             </NavLink>
           ))}
+          {isCurrentUser && <Button onClick={handleLogout}>Logout</Button>}
         </SwipeableDrawer>
       </Container>
     </Box>
