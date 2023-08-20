@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Box, Container, Stack, Button } from '@mui/material'
 import { ROUTE_ITEMS } from './routes'
@@ -8,9 +9,13 @@ import { useAuth } from '@/hooks'
 function HeaderDesktop() {
   const router = useRouter()
   const { profile, logout } = useAuth()
-  const isCurrentUser = Boolean(profile?.username)
+  const [isCurrentUser, setIsCurrentUser] = useState<boolean>(false)
 
   const routeItems = ROUTE_ITEMS.filter((item) => isCurrentUser || !item.requireLogin)
+
+  useEffect(() => {
+    setIsCurrentUser(Boolean(profile?.username))
+  }, [profile])
 
   const handleLogout = () => {
     logout()
@@ -37,7 +42,7 @@ function HeaderDesktop() {
             </Button>
           ) : (
             <Button variant="outlined" onClick={handleLogout}>
-              {profile.username}
+              {profile?.username}
             </Button>
           )}
         </Stack>

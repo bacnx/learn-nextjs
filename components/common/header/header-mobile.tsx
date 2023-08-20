@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Box, Button, Container, SwipeableDrawer } from '@mui/material'
 import { MenuOutlined } from '@mui/icons-material'
-import { useState } from 'react'
 import { ROUTE_ITEMS } from './routes'
 import NavLink from '../nav-link'
 import { useAuth } from '@/hooks'
@@ -9,11 +9,15 @@ import { palette } from '@/utils'
 
 function HeaderMobile() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
+  const [isCurrentUser, setIsCurrentUser] = useState<boolean>(false)
   const { profile, logout } = useAuth()
   const router = useRouter()
 
-  const isCurrentUser = !!profile?.username
   const routeItems = ROUTE_ITEMS.filter((item) => isCurrentUser || !item.requireLogin)
+
+  useEffect(() => {
+    setIsCurrentUser(Boolean(profile?.username))
+  }, [profile])
 
   const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer)
